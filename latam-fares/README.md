@@ -12,8 +12,9 @@ streamlit run app.py
 ## Uso rápido
 1. Preencha origem/destino de ida e volta na sidebar
 2. Ajuste período, regras de viagem e timeout por consulta
-3. Clique em **Buscar combinações**
-4. Veja os cards, tabela principal e dados brutos para debug
+3. Se a API responder 403/timeout por sessão, cole o header `Cookie` no campo **Cookies (opcional)**
+4. Clique em **Buscar combinações**
+5. Veja os cards, tabela principal e dados brutos para debug
 
 ## Estrutura
 latam-fares/

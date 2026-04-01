@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from http.cookies import SimpleCookie
 from urllib.parse import urlencode
 
 import pandas as pd
@@ -25,6 +26,15 @@ DEFAULT_HEADERS = {
 # DEFAULT_COOKIES = {"session_id": "...", "token": "..."}
 DEFAULT_COOKIES: dict = {}
 # ─────────────────────────────────────────────────────────────────────
+
+
+def parse_cookie_string(cookie_string: str) -> dict[str, str]:
+    """Converte string de Cookie (formato de header) para dict."""
+    if not cookie_string.strip():
+        return {}
+    parsed = SimpleCookie()
+    parsed.load(cookie_string)
+    return {key: morsel.value for key, morsel in parsed.items()}
 
 
 def build_url(origin: str, destination: str, month: int, year: int) -> str:

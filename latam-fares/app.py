@@ -9,14 +9,22 @@ import requests
 import streamlit as st
 
 from services.combinator import combine_trips
-from services.latam_api import fetch_month_prices
+from services.latam_api import fetch_month_prices, parse_cookie_string
 from utils.dates import WEEKDAY_NAMES_PT, month_range, weekday_name_to_int
 from utils.formatting import fmt_brl, fmt_date_br, fmt_percentile
 
 
 @st.cache_data(ttl=3600)
-def cached_fetch_month_prices(origin, destination, month, year, direction, timeout_sec):
-    return fetch_month_prices(origin, destination, month, year, direction, timeout=timeout_sec)
+def cached_fetch_month_prices(origin, destination, month, year, direction, timeout_sec, cookies):
+    return fetch_month_prices(
+        origin,
+        destination,
+        month,
+        year,
+        direction,
+        timeout=timeout_sec,
+        cookies=cookies,
+    )
 
 
 def _weekday_names_to_int(values: list[str]) -> list[int]:
@@ -76,6 +84,18 @@ outbound_days = st.sidebar.multiselect("Dias da semana — ida", WEEKDAY_NAMES_P
 inbound_days = st.sidebar.multiselect("Dias da semana — volta", WEEKDAY_NAMES_PT, default=WEEKDAY_NAMES_PT)
 top_n = st.sidebar.slider("Top N combinações", min_value=5, max_value=100, value=20)
 timeout_sec = st.sidebar.slider("Timeout por consulta (s)", min_value=10, max_value=60, value=25)
+cookie_input = st.sidebar.text_area(
+    "Cookies (opcional)",
+    value="",
+    help="Cole o header Cookie completo do cURL/browser quando a LATAM exigir sessão.",
+    height=110,
+)
+
+try:
+    cookies_dict = parse_cookie_string(cookie_input)
+except Exception:
+    st.sidebar.error("Cookie inválido. Use formato: chave1=valor1; chave2=valor2")
+    cookies_dict = {}
 
 sort_option = st.selectbox(
     "Ordenar por",
@@ -98,6 +118,7 @@ if st.button("Buscar combinações"):
                         year,
                         "OUTBOUND",
                         timeout_sec,
+                        cookies_dict,
                     )
                 )
                 inbound_frames.append(
@@ -108,6 +129,7 @@ if st.button("Buscar combinações"):
                         year,
                         "INBOUND",
                         timeout_sec,
+                        cookies_dict,
                     )
                 )
     except requests.HTTPError as e:
