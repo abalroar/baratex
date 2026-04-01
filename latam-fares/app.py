@@ -11,12 +11,12 @@ import streamlit as st
 from services.combinator import combine_trips
 from services.latam_api import fetch_month_prices
 from utils.dates import WEEKDAY_NAMES_PT, month_range, weekday_name_to_int
-from utils.formatting import fmt_brl, fmt_date_br
+from utils.formatting import fmt_brl, fmt_date_br, fmt_percentile
 
 
 @st.cache_data(ttl=3600)
-def cached_fetch_month_prices(origin, destination, month, year, direction):
-    return fetch_month_prices(origin, destination, month, year, direction)
+def cached_fetch_month_prices(origin, destination, month, year, direction, timeout_sec):
+    return fetch_month_prices(origin, destination, month, year, direction, timeout=timeout_sec)
 
 
 def _weekday_names_to_int(values: list[str]) -> list[int]:
@@ -36,6 +36,21 @@ def _format_table(df: pd.DataFrame) -> pd.DataFrame:
 
 
 st.set_page_config(page_title="LATAM Fare Discovery", layout="wide")
+st.markdown(
+    """
+    <style>
+    .stApp { background: #0e0f11; color: #e4e6ea; }
+    section[data-testid="stSidebar"] { background: #141619; border-right: 1px solid #32363d; }
+    .stMetric { background: #141619; border: 1px solid #32363d; border-radius: 12px; padding: 12px; }
+    .stButton>button { background: #3ec9d6; color: #0e0f11; border: none; border-radius: 10px; font-weight: 600; }
+    .stButton>button:hover { background: #2ab5c2; color: #0e0f11; }
+    .stSelectbox [data-baseweb="select"] > div { background: #1a1d21; border-color: #32363d; }
+    .stTextInput input, .stNumberInput input { background: #1a1d21 !important; color: #e4e6ea !important; }
+    .stMultiSelect [data-baseweb="tag"] { background: #1a3035; color: #3ec9d6; }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 st.title("LATAM Fare Discovery")
 st.caption("Encontre combinações vantajosas de ida e volta com base no calendário da LATAM.")
@@ -47,6 +62,9 @@ outbound_origin = st.sidebar.text_input("Origem da ida", value="GRU").strip().up
 outbound_destination = st.sidebar.text_input("Destino da ida", value="JFK").strip().upper()
 inbound_origin = st.sidebar.text_input("Origem da volta", value="JFK").strip().upper()
 inbound_destination = st.sidebar.text_input("Destino da volta", value="GRU").strip().upper()
+if st.sidebar.button("Trocar ida/volta"):
+    outbound_origin, inbound_origin = inbound_origin, outbound_origin
+    outbound_destination, inbound_destination = inbound_destination, outbound_destination
 start_month = st.sidebar.selectbox("Mês inicial", list(range(1, 13)), index=current.month - 1)
 start_year = st.sidebar.number_input("Ano inicial", min_value=2024, value=current.year, step=1)
 months_count = st.sidebar.slider("Quantidade de meses", min_value=1, max_value=6, value=2)
@@ -57,6 +75,7 @@ max_days = st.sidebar.number_input("Dias máximos de viagem", min_value=1, value
 outbound_days = st.sidebar.multiselect("Dias da semana — ida", WEEKDAY_NAMES_PT, default=WEEKDAY_NAMES_PT)
 inbound_days = st.sidebar.multiselect("Dias da semana — volta", WEEKDAY_NAMES_PT, default=WEEKDAY_NAMES_PT)
 top_n = st.sidebar.slider("Top N combinações", min_value=5, max_value=100, value=20)
+timeout_sec = st.sidebar.slider("Timeout por consulta (s)", min_value=10, max_value=60, value=25)
 
 sort_option = st.selectbox(
     "Ordenar por",
@@ -78,6 +97,7 @@ if st.button("Buscar combinações"):
                         month,
                         year,
                         "OUTBOUND",
+                        timeout_sec,
                     )
                 )
                 inbound_frames.append(
@@ -87,6 +107,7 @@ if st.button("Buscar combinações"):
                         month,
                         year,
                         "INBOUND",
+                        timeout_sec,
                     )
                 )
     except requests.HTTPError as e:
@@ -136,3 +157,24 @@ if st.button("Buscar combinações"):
         st.dataframe(outbound_df, use_container_width=True)
     with st.expander("Dados brutos de volta"):
         st.dataframe(inbound_df, use_container_width=True)
+    with st.expander("Como o ranking é calculado"):
+        st.markdown(
+            "- **Score**: `total_price * (1 + avg_percentile) * 0.95` quando ambas as pernas são low price.\n"
+            "- Percentis exibidos como referência de posição no mês."
+        )
+        if not combined.empty:
+            preview = combined.copy()
+            preview["departure_percentile"] = preview["departure_percentile"].apply(fmt_percentile)
+            preview["return_percentile"] = preview["return_percentile"].apply(fmt_percentile)
+            st.dataframe(
+                preview[
+                    [
+                        "departure_date",
+                        "return_date",
+                        "departure_percentile",
+                        "return_percentile",
+                        "score",
+                    ]
+                ],
+                use_container_width=True,
+            )

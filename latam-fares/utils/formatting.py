@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import date, datetime
+import math
 
 
 def _pt_br_number(value: float) -> str:
@@ -12,6 +13,8 @@ def _pt_br_number(value: float) -> str:
 
 def fmt_brl(value: float) -> str:
     """R$ 1.670,34 — padrão brasileiro obrigatório em todos os displays."""
+    if value is None or (isinstance(value, float) and math.isnan(value)):
+        return "N/D"
     return f"R$ {_pt_br_number(value)}"
 
 
@@ -27,4 +30,6 @@ def fmt_date_br(d: date) -> str:
 
 def fmt_percentile(p: float) -> str:
     """0.03 → 'top 3%'."""
+    if p is None or (isinstance(p, float) and math.isnan(p)):
+        return "N/D"
     return f"top {round(p * 100):.0f}%"

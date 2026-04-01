@@ -47,7 +47,8 @@ def fetch_calendar(
     year: int,
     headers: dict | None = None,
     cookies: dict | None = None,
-    timeout: int = 15,
+    timeout: int = 20,
+    max_retries: int = 2,
 ) -> dict:
     """Faz o GET e retorna o JSON bruto. Lança exceção em caso de erro."""
     params = {
@@ -61,18 +62,27 @@ def fetch_calendar(
     request_headers = {**DEFAULT_HEADERS, **(headers or {})}
     request_cookies = {**DEFAULT_COOKIES, **(cookies or {})}
 
-    try:
-        response = requests.get(
-            BASE_URL,
-            params=params,
-            headers=request_headers,
-            cookies=request_cookies,
-            timeout=timeout,
-        )
-    except requests.Timeout as exc:
+    last_timeout: Exception | None = None
+    response = None
+    for _ in range(max_retries + 1):
+        try:
+            response = requests.get(
+                BASE_URL,
+                params=params,
+                headers=request_headers,
+                cookies=request_cookies,
+                timeout=timeout,
+            )
+            break
+        except requests.Timeout as exc:
+            last_timeout = exc
+            continue
+
+    if response is None:
         raise TimeoutError(
-            f"Timeout ao consultar LATAM para {origin}-{destination} {month:02d}/{year}"
-        ) from exc
+            f"Timeout ao consultar LATAM para {origin}-{destination} {month:02d}/{year} "
+            f"após {max_retries + 1} tentativas."
+        ) from last_timeout
 
     response.raise_for_status()
 
@@ -158,6 +168,8 @@ def fetch_month_prices(
     direction: str,
     headers: dict | None = None,
     cookies: dict | None = None,
+    timeout: int = 20,
+    max_retries: int = 2,
 ) -> pd.DataFrame:
     """Orquestra fetch + parse para um mês e direção. Retorna apenas enabled=True."""
     raw = fetch_calendar(
@@ -167,6 +179,8 @@ def fetch_month_prices(
         year=year,
         headers=headers,
         cookies=cookies,
+        timeout=timeout,
+        max_retries=max_retries,
     )
     df = parse_calendar(raw=raw, direction=direction)
     if df.empty:

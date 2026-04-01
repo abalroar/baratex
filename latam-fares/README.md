@@ -9,6 +9,12 @@ pip install -r requirements.txt
 ## Como rodar
 streamlit run app.py
 
+## Uso rápido
+1. Preencha origem/destino de ida e volta na sidebar
+2. Ajuste período, regras de viagem e timeout por consulta
+3. Clique em **Buscar combinações**
+4. Veja os cards, tabela principal e dados brutos para debug
+
 ## Estrutura
 latam-fares/
 ├── app.py               # UI Streamlit
