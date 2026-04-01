@@ -9,13 +9,24 @@ import requests
 import streamlit as st
 
 from services.combinator import combine_trips
-from services.latam_api import fetch_month_prices, parse_cookie_string
+from services.latam_api import fetch_month_prices, parse_cookie_string, parse_headers_string
 from utils.dates import WEEKDAY_NAMES_PT, month_range, weekday_name_to_int
 from utils.formatting import fmt_brl, fmt_date_br, fmt_percentile
 
 
 @st.cache_data(ttl=3600)
-def cached_fetch_month_prices(origin, destination, month, year, direction, timeout_sec, cookies):
+def cached_fetch_month_prices(
+    origin,
+    destination,
+    month,
+    year,
+    direction,
+    timeout_sec,
+    cookie_items,
+    header_items,
+):
+    cookies = dict(cookie_items)
+    headers = dict(header_items)
     return fetch_month_prices(
         origin,
         destination,
@@ -24,6 +35,7 @@ def cached_fetch_month_prices(origin, destination, month, year, direction, timeo
         direction,
         timeout=timeout_sec,
         cookies=cookies,
+        headers=headers,
     )
 
 
@@ -90,12 +102,28 @@ cookie_input = st.sidebar.text_area(
     help="Cole o header Cookie completo do cURL/browser quando a LATAM exigir sessão.",
     height=110,
 )
+headers_input = st.sidebar.text_area(
+    "Headers extras (opcional)",
+    value="",
+    help="Um header por linha. Ex.: x-foo: bar",
+    height=110,
+)
 
 try:
     cookies_dict = parse_cookie_string(cookie_input)
 except Exception:
     st.sidebar.error("Cookie inválido. Use formato: chave1=valor1; chave2=valor2")
     cookies_dict = {}
+try:
+    headers_dict = parse_headers_string(headers_input)
+except Exception:
+    st.sidebar.error("Headers inválidos. Use formato: Header-Name: valor")
+    headers_dict = {}
+if cookie_input.strip() and cookies_dict:
+    st.sidebar.caption(f"Cookies parseados: {len(cookies_dict)}")
+if headers_input.strip() and headers_dict:
+    st.sidebar.caption(f"Headers parseados: {len(headers_dict)}")
+st.sidebar.caption("Use somente cookies da sua própria sessão; proteções do provedor não são contornadas pelo app.")
 
 sort_option = st.selectbox(
     "Ordenar por",
@@ -118,7 +146,8 @@ if st.button("Buscar combinações"):
                         year,
                         "OUTBOUND",
                         timeout_sec,
-                        cookies_dict,
+                        tuple(sorted(cookies_dict.items())),
+                        tuple(sorted(headers_dict.items())),
                     )
                 )
                 inbound_frames.append(
@@ -129,7 +158,8 @@ if st.button("Buscar combinações"):
                         year,
                         "INBOUND",
                         timeout_sec,
-                        cookies_dict,
+                        tuple(sorted(cookies_dict.items())),
+                        tuple(sorted(headers_dict.items())),
                     )
                 )
     except requests.HTTPError as e:

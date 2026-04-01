@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from http.cookies import SimpleCookie
 from urllib.parse import urlencode
 
 import pandas as pd
@@ -29,12 +28,55 @@ DEFAULT_COOKIES: dict = {}
 
 
 def parse_cookie_string(cookie_string: str) -> dict[str, str]:
-    """Converte string de Cookie (formato de header) para dict."""
+    """Converte string de Cookie (formato de header) para dict.
+
+    Implementação tolerante a cookies longos/duplicados e trechos malformados.
+    """
     if not cookie_string.strip():
         return {}
-    parsed = SimpleCookie()
-    parsed.load(cookie_string)
-    return {key: morsel.value for key, morsel in parsed.items()}
+    result: dict[str, str] = {}
+    normalized = cookie_string.strip()
+    if normalized.lower().startswith("cookie:"):
+        normalized = normalized.split(":", 1)[1].strip()
+    for part in normalized.split(";"):
+        chunk = part.strip()
+        if not chunk or "=" not in chunk:
+            continue
+        key, value = chunk.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip('"')
+        if not key:
+            continue
+        result[key] = value
+    return result
+
+
+def parse_headers_string(headers_string: str) -> dict[str, str]:
+    """Converte headers extras em texto para dict.
+
+    Formatos aceitos por linha:
+    - Header-Name: value
+    - 'Header-Name': 'value' (copiado de cURL)
+    """
+    if not headers_string.strip():
+        return {}
+
+    result: dict[str, str] = {}
+    for raw_line in headers_string.splitlines():
+        line = raw_line.strip().strip(",")
+        if not line:
+            continue
+        if line.startswith("-H "):
+            line = line[3:].strip()
+        line = line.strip("'").strip('"')
+        if ":" not in line:
+            continue
+        key, value = line.split(":", 1)
+        key = key.strip().strip("'").strip('"')
+        value = value.strip().strip("'").strip('"')
+        if key:
+            result[key] = value
+    return result
 
 
 def build_url(origin: str, destination: str, month: int, year: int) -> str:
@@ -94,7 +136,13 @@ def fetch_calendar(
             f"após {max_retries + 1} tentativas."
         ) from last_timeout
 
-    response.raise_for_status()
+    try:
+        response.raise_for_status()
+    except requests.HTTPError as exc:
+        body_excerpt = response.text[:220].replace("\n", " ")
+        raise requests.HTTPError(
+            f"{exc} | body='{body_excerpt}' | dica: valide cookies/sessão no campo de Cookies."
+        ) from exc
 
     try:
         return response.json()

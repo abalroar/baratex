@@ -13,8 +13,9 @@ streamlit run app.py
 1. Preencha origem/destino de ida e volta na sidebar
 2. Ajuste período, regras de viagem e timeout por consulta
 3. Se a API responder 403/timeout por sessão, cole o header `Cookie` no campo **Cookies (opcional)**
-4. Clique em **Buscar combinações**
-5. Veja os cards, tabela principal e dados brutos para debug
+4. Se necessário, cole headers adicionais no campo **Headers extras (opcional)**
+5. Clique em **Buscar combinações**
+6. Veja os cards, tabela principal e dados brutos para debug
 
 ## Estrutura
 latam-fares/
@@ -29,6 +30,7 @@ latam-fares/
 ## Limitações conhecidas
 - O endpoint /bff/ é interno da LATAM e pode mudar sem aviso
 - Requer headers de navegador válidos; pode precisar de cookies de sessão
+- Se houver proteção anti-bot/anti-abuso ativa, a requisição pode ser negada mesmo com cookies
 - Preços do calendário são indicativos — o valor final pode diferir na checkout
 - Sem histórico de preços nesta versão
 - Sem alertas ou notificações nesta versão
