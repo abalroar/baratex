@@ -1,10 +1,10 @@
 # Relatório de Inteligência de Mercado — LeilõesBR
 
-_Gerado em 11/06/2026 12:44. Coleta de páginas públicas, sem login, com rate limit._
+_Gerado em 04/07/2026 03:16. Coleta de páginas públicas, sem login, com rate limit._
 
 ## 1. Resumo executivo
 
-- **Lotes coletados:** 1.211.869 (8.582 ao vivo, 1.682.827 finalizados)
+- **Lotes coletados:** 1.216.122 (12.835 ao vivo, 1.682.827 finalizados)
 - **Casas/leiloeiros mapeados:** 845
 - **Lotes vendidos com martelo observado:** 905.295 → **sell-through global 53,8%**
 - **Janela de finalizados observada:** 14/01/2015 a 10/06/2026 (4166 dias).
@@ -67,8 +67,8 @@ _Gerado em 11/06/2026 12:44. Coleta de páginas públicas, sem login, com rate l
 
 | casa | uf | finalizados | zero-bid | sell-through | martelo médio |
 |---|---|---|---|---|---|
-| Leilões Bruno Francesco | RJ | 270 | 100,0% | 0,0% | — |
 | Sol Mar e Lua Leilões | SP | 233 | 100,0% | 0,0% | — |
+| Leilões Bruno Francesco | RJ | 270 | 100,0% | 0,0% | — |
 | CH Collection - Numismática, Joias e Colecionáveis | PR | 386 | 100,0% | 0,0% | — |
 | Casa de Leilões Guedes e Guedes | nan | 651 | 99,1% | 0,9% | R$ 157,50 |
 | Coleções e Afins | MG | 600 | 98,7% | 1,3% | R$ 24,25 |
@@ -109,7 +109,7 @@ _Zero-bid alto = mais chance de arrematar barato / pós-pregão._
 
 > **Como ler.** Estes são sinais de _triagem_, não lucros garantidos. A revenda é estimada pelo p25 (conservador) dos martelos de comparáveis × markup de varejo. O comp agrupa por (tipo, designer), então **não distingue o modelo/linha específico** (ex.: uma 'Poltrona Cimba' barata herda o comp de poltronas do mesmo designer). Trate margens altas em itens de lance muito baixo como candidatos a verificar peça a peça (use a coluna `lot_url` e a amostra de auditoria), não como certezas.
 
-Total de lotes BUY_NOW: **51**. Top 25 por lucro estimado (conservador):
+Total de lotes BUY_NOW: **68**. Top 25 por lucro estimado (conservador):
 
 | título | tipo | designer | lance atual | revenda est. | margem | lance máx 40% | uf |
 |---|---|---|---|---|---|---|---|
@@ -141,7 +141,7 @@ Total de lotes BUY_NOW: **51**. Top 25 por lucro estimado (conservador):
 
 ## 8. Carteira sugerida — estoque inicial
 
-### R$ 30.000 — 40 peças, capital alocado R$ 29.631,00
+### R$ 30.000 — 36 peças, capital alocado R$ 29.977,50
 
 | título | tipo | lance | lucro est. | margem | uf |
 |---|---|---|---|---|---|
@@ -167,28 +167,24 @@ Total de lotes BUY_NOW: **51**. Top 25 por lucro estimado (conservador):
 | JOSEPH SCAPINELLI- Par de cadeira anos 60 | cadeira | R$ 150,00 | R$ 2.722,50 | 86,4% | nan |
 | CELINA DECORAÇÕES-BELO PAR DE MESAS LATERA | outro | R$ 850,00 | R$ 2.617,50 | 69,2% | nan |
 | Sergio Rodrigues - Mesa de centro de dois  | mesa_de_centro | R$ 1.200,00 | R$ 2.449,40 | 44,9% | SP |
+| Mesa estilo GIUSEPPE SCAPINELLI: Antiga ba | mesa_de_centro | R$ 100,00 | R$ 2.015,00 | 52,1% | RJ |
+| Mesa Auxiliar, Giuseppe Scapinelli - Produ | mesa_lateral | R$ 900,00 | R$ 1.876,50 | 60,7% | SP |
 | Par de Poltronas, Estilo Luís XVI, em Made | par_de_poltronas | R$ 120,00 | R$ 1.871,00 | 73,5% | SP |
 | Par de poltronas estofadas com tecido list | par_de_poltronas | R$ 150,00 | R$ 1.839,50 | 72,2% | RS |
+| Celina Zilberberg - Celina Decorações - Br | outro | R$ 1.600,00 | R$ 1.830,00 | 48,4% | RJ |
+| Mesa Auxiliar, Giuseppe Scapinelli - Produ | mesa_lateral | R$ 950,00 | R$ 1.824,00 | 59,0% | SP |
 | Par de poltronas de diretor em metal com a | par_de_poltronas | R$ 290,00 | R$ 1.692,50 | 66,5% | RS |
 | Autor Desconhecido - Banco Ripado - O banc | banco | R$ 220,00 | R$ 1.629,00 | 48,9% | SP |
 | Par de poltronas em ferro tubular anos 60  | par_de_poltronas | R$ 390,00 | R$ 1.587,50 | 62,3% | SP |
-| Par de Poltronas Giratórias, Anos 70 - Apr | par_de_poltronas | R$ 400,00 | R$ 1.577,00 | 61,9% | SP |
-| Par de poltronas - Anos 50. Produzidas em  | par_de_poltronas | R$ 400,00 | R$ 1.577,00 | 61,9% | SP |
+| Par de poltronas em ferro tubular anos 60  | par_de_poltronas | R$ 390,00 | R$ 1.587,50 | 62,3% | SP |
 | Par de poltronas estilo Wingback clássica  | par_de_poltronas | R$ 400,00 | R$ 1.577,00 | 61,9% | RS |
 | Par de poltronas rústicas em madeira -med. | par_de_poltronas | R$ 450,00 | R$ 1.524,50 | 59,9% | RS |
-| Par de poltronas estofadas. Altura do enco | par_de_poltronas | R$ 500,00 | R$ 1.472,00 | 57,8% | nan |
 | Par de poltronas contemporâneas estofadas  | par_de_poltronas | R$ 300,00 | R$ 1.382,00 | 54,3% | RS |
-| Par de poltronas em excelente estado, esto | par_de_poltronas | R$ 800,00 | R$ 1.157,00 | 45,4% | nan |
-| SERGIO RODRIGUES-BELA MESA DE APOIO EXECUT | mesa_lateral | R$ 480,00 | R$ 1.003,50 | 56,5% | nan |
-| Lote de 4 cadeiras de plástico Tramontina  | conjunto_de_cadeiras | R$ 120,00 | R$ 854,00 | 55,8% | RS |
-| Mesa de centro em madeira nobre pintada de | mesa_de_centro | R$ 320,00 | R$ 806,00 | 47,6% | nan |
-| Poltrona estilo Luiz Felipe Volterie em ma | poltrona | R$ 100,00 | R$ 785,00 | 54,5% | RJ |
-| Percival Lafer mesa de centro em madeira c | mesa_de_centro | R$ 350,00 | R$ 774,50 | 45,8% | SP |
-| Antiga poltrona vintage de madeira com um  | poltrona | R$ 150,00 | R$ 732,50 | 50,9% | RJ |
+| Par de cadeiras em plástico.  Altura: 0. 8 | par_de_cadeiras | R$ 10,00 | R$ 367,50 | 56,7% | nan |
 
-**Lucro bruto potencial da carteira (estimativa conservadora, a verificar peça a peça): R$ 128.974,60** (margem agregada 81,3%). Driver: peças de designer (Sergio Rodrigues, Burle Marx) com lance ainda baixo — confirme modelo/linha e autenticidade antes de arrematar.
+**Lucro bruto potencial da carteira (estimativa conservadora, a verificar peça a peça): R$ 127.736,60** (margem agregada 81,0%). Driver: peças de designer (Sergio Rodrigues, Burle Marx) com lance ainda baixo — confirme modelo/linha e autenticidade antes de arrematar.
 
-### R$ 50.000 — 40 peças, capital alocado R$ 29.631,00
+### R$ 50.000 — 40 peças, capital alocado R$ 34.534,50
 
 | título | tipo | lance | lucro est. | margem | uf |
 |---|---|---|---|---|---|
@@ -214,48 +210,49 @@ Total de lotes BUY_NOW: **51**. Top 25 por lucro estimado (conservador):
 | JOSEPH SCAPINELLI- Par de cadeira anos 60 | cadeira | R$ 150,00 | R$ 2.722,50 | 86,4% | nan |
 | CELINA DECORAÇÕES-BELO PAR DE MESAS LATERA | outro | R$ 850,00 | R$ 2.617,50 | 69,2% | nan |
 | Sergio Rodrigues - Mesa de centro de dois  | mesa_de_centro | R$ 1.200,00 | R$ 2.449,40 | 44,9% | SP |
+| Mesa estilo GIUSEPPE SCAPINELLI: Antiga ba | mesa_de_centro | R$ 100,00 | R$ 2.015,00 | 52,1% | RJ |
+| Mesa Auxiliar, Giuseppe Scapinelli - Produ | mesa_lateral | R$ 900,00 | R$ 1.876,50 | 60,7% | SP |
 | Par de Poltronas, Estilo Luís XVI, em Made | par_de_poltronas | R$ 120,00 | R$ 1.871,00 | 73,5% | SP |
 | Par de poltronas estofadas com tecido list | par_de_poltronas | R$ 150,00 | R$ 1.839,50 | 72,2% | RS |
+| Celina Zilberberg - Celina Decorações - Br | outro | R$ 1.600,00 | R$ 1.830,00 | 48,4% | RJ |
+| Mesa Auxiliar, Giuseppe Scapinelli - Produ | mesa_lateral | R$ 950,00 | R$ 1.824,00 | 59,0% | SP |
 | Par de poltronas de diretor em metal com a | par_de_poltronas | R$ 290,00 | R$ 1.692,50 | 66,5% | RS |
 | Autor Desconhecido - Banco Ripado - O banc | banco | R$ 220,00 | R$ 1.629,00 | 48,9% | SP |
 | Par de poltronas em ferro tubular anos 60  | par_de_poltronas | R$ 390,00 | R$ 1.587,50 | 62,3% | SP |
-| Par de Poltronas Giratórias, Anos 70 - Apr | par_de_poltronas | R$ 400,00 | R$ 1.577,00 | 61,9% | SP |
-| Par de poltronas - Anos 50. Produzidas em  | par_de_poltronas | R$ 400,00 | R$ 1.577,00 | 61,9% | SP |
+| Par de poltronas em ferro tubular anos 60  | par_de_poltronas | R$ 390,00 | R$ 1.587,50 | 62,3% | SP |
 | Par de poltronas estilo Wingback clássica  | par_de_poltronas | R$ 400,00 | R$ 1.577,00 | 61,9% | RS |
+| ATHOS BULCÃO  -  Gravura:  Aeroporto Inter | gravura | R$ 1.200,00 | R$ 1.549,50 | 52,9% | nan |
 | Par de poltronas rústicas em madeira -med. | par_de_poltronas | R$ 450,00 | R$ 1.524,50 | 59,9% | RS |
 | Par de poltronas estofadas. Altura do enco | par_de_poltronas | R$ 500,00 | R$ 1.472,00 | 57,8% | nan |
+| ATHOS BULCÃO  -  Gravura:  Aeroporto Inter | gravura | R$ 1.300,00 | R$ 1.444,50 | 49,3% | nan |
 | Par de poltronas contemporâneas estofadas  | par_de_poltronas | R$ 300,00 | R$ 1.382,00 | 54,3% | RS |
-| Par de poltronas em excelente estado, esto | par_de_poltronas | R$ 800,00 | R$ 1.157,00 | 45,4% | nan |
-| SERGIO RODRIGUES-BELA MESA DE APOIO EXECUT | mesa_lateral | R$ 480,00 | R$ 1.003,50 | 56,5% | nan |
-| Lote de 4 cadeiras de plástico Tramontina  | conjunto_de_cadeiras | R$ 120,00 | R$ 854,00 | 55,8% | RS |
-| Mesa de centro em madeira nobre pintada de | mesa_de_centro | R$ 320,00 | R$ 806,00 | 47,6% | nan |
-| Poltrona estilo Luiz Felipe Volterie em ma | poltrona | R$ 100,00 | R$ 785,00 | 54,5% | RJ |
-| Percival Lafer mesa de centro em madeira c | mesa_de_centro | R$ 350,00 | R$ 774,50 | 45,8% | SP |
-| Antiga poltrona vintage de madeira com um  | poltrona | R$ 150,00 | R$ 732,50 | 50,9% | RJ |
+| Roberto Burle Marx - Serigrafia - Abstrato | gravura | R$ 675,00 | R$ 1.331,25 | 61,6% | nan |
+| Roberto Burle Marx - Serigrafia - Abstrato | gravura | R$ 675,00 | R$ 1.331,25 | 61,6% | nan |
 
-**Lucro bruto potencial da carteira (estimativa conservadora, a verificar peça a peça): R$ 128.974,60** (margem agregada 81,3%). Driver: peças de designer (Sergio Rodrigues, Burle Marx) com lance ainda baixo — confirme modelo/linha e autenticidade antes de arrematar.
+**Lucro bruto potencial da carteira (estimativa conservadora, a verificar peça a peça): R$ 134.497,60** (margem agregada 79,6%). Driver: peças de designer (Sergio Rodrigues, Burle Marx) com lance ainda baixo — confirme modelo/linha e autenticidade antes de arrematar.
 
 ## 9. Lances máximos por tipo de peça (para margem de 40%)
 
 | item_type | lance máx mediano (40% margem) |
 |---|---|
 | cristal_vidro | R$ 4.077,14 |
-| mesa_lateral | R$ 2.554,72 |
 | banco | R$ 2.468,57 |
-| poltrona | R$ 2.421,90 |
-| par_de_cadeiras | R$ 1.902,86 |
 | quadro_pintura | R$ 1.902,86 |
 | outro | R$ 1.902,86 |
 | cadeira | R$ 1.542,86 |
-| mesa_de_centro | R$ 948,02 |
+| mesa_lateral | R$ 1.509,43 |
+| poltrona | R$ 1.360,48 |
+| gravura | R$ 1.339,86 |
 | par_de_poltronas | R$ 931,62 |
+| mesa_de_centro | R$ 493,90 |
 | conjunto_de_cadeiras | R$ 350,48 |
+| par_de_cadeiras | R$ 113,14 |
 
 ## 10. Modelo A (casa de leilão) vs Modelo B (garimpo + revenda)
 
 - **GMV observado** nas casas amostradas (martelo × vendidos): ~R$ 99.197.394,00 na janela de 14/01/2015 a 10/06/2026 (4166 dias) — denso e pulverizado entre muitas casas.
 - **Modelo A** com take de 15,0%: para cobrir OPEX de R$ 10.000 / 15.000 / 25.000 ao mês, a casa precisaria de GMV mensal de ~R$ 66.666,67 / R$ 100.000,00 / R$ 166.666,67 respectivamente. Exige curadoria, captação de consignação e base de compradores — difícil para operação solo no início.
-- **Modelo B** já é acionável hoje: 51 lotes BUY_NOW com margem ≥ 40,0%, capital inicial de R$ 30k aloca 40 peças. Giro depende de logística — por isso o foco em peças small/medium/large.
+- **Modelo B** já é acionável hoje: 68 lotes BUY_NOW com margem ≥ 40,0%, capital inicial de R$ 30k aloca 36 peças. Giro depende de logística — por isso o foco em peças small/medium/large.
 
 **Recomendação:** começar pelo **Modelo B** (menor capital travado, risco operacional menor, lucro por peça verificável com os dados). Migrar para **Modelo A** quando o GMV mensal de revenda ultrapassar consistentemente ~R$ 100.000,00 e houver fluxo de consignação — aí o take fixo da casa passa a compensar o OPEX.
 
