@@ -54,10 +54,14 @@ def export_csvs(conn):
                                       WHERE s2.house_domain=l.house_domain AND s2.lot_id=l.lot_id)
                """)
     lots_df.to_csv(E / "lots.csv", index=False)
+    # "Ao vivo agora": metrics.py só calcula sinal para os lotes atuais de leilão,
+    # então signal preenchido <=> caso atual. Coluna booleana explícita p/ o dashboard
+    # separar leilão em aberto AGORA de 'andamento' antigo que já encerrou.
+    lots_df["is_live_now"] = lots_df["signal"].notna()
     # Parquet enxuto p/ o dashboard (lê rápido, cabe no git; o CSV gigante fica fora)
     dash_cols = ["house_domain", "lot_id", "title", "uf", "lot_url", "auction_datetime",
                  "item_type_normalized", "macro_category", "size_class", "designer", "attribution_strength",
-                 "material", "condition_tier", "status", "current_bid_brl", "opening_bid_brl",
+                 "material", "condition_tier", "status", "is_live_now", "current_bid_brl", "opening_bid_brl",
                  "hammer_price_brl", "bid_count", "sold", "excluded_sensitive",
                  "est_resale_base", "est_gross_margin_pct", "max_bid_40pct", "confidence",
                  "signal", "signal_reasons"]
@@ -401,11 +405,60 @@ sem lance/ofertados; martelo_medio/mediano; lances_medio (bid intensity).
 """
 
 
+def write_run_meta(conn, extra: dict | None = None):
+    """Grava data/exports/run_meta.json com o estado da última atualização.
+
+    É a "memória" da pipeline: o dashboard mostra estes números (última coleta,
+    quantos lotes, quantos sinais) e o refresh.py automático lê o cutoff da
+    rodada anterior para pegar só os leilões novos na próxima vez. Faz MERGE com
+    o arquivo existente para preservar chaves escritas por quem chamar (refresh.py
+    grava cutoff/tempos por etapa).
+    """
+    import json
+
+    def scalar(sql):
+        return conn.execute(sql).fetchone()[0]
+
+    signals = {"BUY_NOW": 0, "WATCH": 0, "AVOID": 0}
+    for row in conn.execute("SELECT signal, COUNT(*) n FROM lot_enrichment "
+                            "WHERE signal IS NOT NULL GROUP BY signal"):
+        signals[row[0]] = row[1]
+    meta = {
+        "generated_at": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+        "lots_total": scalar("SELECT COUNT(*) FROM lots"),
+        "live_now": scalar("SELECT COUNT(*) FROM lot_enrichment WHERE signal IS NOT NULL"),
+        "finalizado_lots": scalar(
+            "SELECT COUNT(DISTINCT house_domain||'|'||lot_id) FROM lot_snapshots "
+            "WHERE status='finalizado'"),
+        "sold_comps": scalar(
+            "SELECT COUNT(*) FROM lot_snapshots WHERE sold=1 AND hammer_price_brl>0"),
+        "houses_known": scalar("SELECT COUNT(*) FROM auction_houses"),
+        "last_listing_scrape": scalar(
+            "SELECT MAX(scraped_at) FROM lot_snapshots WHERE status='andamento'"),
+        "last_finalizado_scrape": scalar(
+            "SELECT MAX(scraped_at) FROM lot_snapshots WHERE status='finalizado'"),
+        "signals": signals,
+    }
+    path = config.EXPORTS_DIR / "run_meta.json"
+    if path.exists():
+        try:
+            prev = json.loads(path.read_text(encoding="utf-8"))
+            prev.update(meta)
+            meta = prev
+        except (ValueError, OSError):
+            pass
+    if extra:
+        meta.update(extra)
+    path.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    return meta
+
+
 def main():
     conn = db.connect()
     house_m, cat_m, opp, avoid = export_csvs(conn)
     write_report(conn, house_m, cat_m, opp, avoid)
     (config.EXPORTS_DIR / "data_dictionary.md").write_text(DATA_DICT, encoding="utf-8")
+    write_run_meta(conn)
     print(f"Exportado para {config.EXPORTS_DIR}")
 
 

@@ -1,13 +1,13 @@
 # Relatório de Inteligência de Mercado — LeilõesBR
 
-_Gerado em 04/07/2026 03:16. Coleta de páginas públicas, sem login, com rate limit._
+_Gerado em 04/07/2026 03:49. Coleta de páginas públicas, sem login, com rate limit._
 
 ## 1. Resumo executivo
 
-- **Lotes coletados:** 1.216.122 (12.835 ao vivo, 1.682.827 finalizados)
+- **Lotes coletados:** 1.217.712 (12.835 ao vivo, 1.691.394 finalizados)
 - **Casas/leiloeiros mapeados:** 845
-- **Lotes vendidos com martelo observado:** 905.295 → **sell-through global 53,8%**
-- **Janela de finalizados observada:** 14/01/2015 a 10/06/2026 (4166 dias).
+- **Lotes vendidos com martelo observado:** 910.576 → **sell-through global 53,8%**
+- **Janela de finalizados observada:** 14/01/2015 a 02/07/2026 (4188 dias).
 - **Fonte de preço:** martelo REAL de leilões finalizados, não proxy. Lances ao vivo da busca por categoria.
 
 > **Observed vs inferred.** Martelo, lance, nº de lances e status de venda são _observados_ no site. Tipo de peça, designer, força de atribuição, custos de frete/restauro, valor de revenda estimado, margem e sinais são _inferidos_ por regras determinísticas (ver `data_dictionary.md`).
@@ -16,60 +16,60 @@ _Gerado em 04/07/2026 03:16. Coleta de páginas públicas, sem login, com rate l
 
 | item_type | ofertados | vendidos | sell-through | martelo mediano | zero-bid |
 |---|---|---|---|---|---|
-| disco_vinil | 79258 | 60740 | 76,6% | R$ 43,00 | 22,8% |
-| prata_metal | 75962 | 52885 | 69,6% | R$ 120,00 | 28,7% |
-| carrinho_de_cha | 485 | 326 | 67,2% | R$ 1.000,00 | 24,9% |
-| conjunto_de_cadeiras | 2371 | 1589 | 67,0% | R$ 2.100,00 | 26,1% |
-| selo_filatelia | 35226 | 23240 | 66,0% | R$ 15,00 | 33,5% |
-| sofa | 3162 | 2003 | 63,3% | R$ 2.600,00 | 28,0% |
-| brinquedo | 135445 | 85606 | 63,2% | R$ 60,00 | 35,6% |
-| par_de_poltronas | 3360 | 2119 | 63,1% | R$ 3.600,00 | 28,9% |
-| mesa_lateral | 2855 | 1763 | 61,8% | R$ 460,00 | 31,4% |
-| mesa_de_centro | 3262 | 1923 | 59,0% | R$ 1.100,00 | 34,9% |
-| poltrona | 5780 | 3379 | 58,5% | R$ 2.100,00 | 33,7% |
-| cama | 1420 | 827 | 58,2% | R$ 400,00 | 37,7% |
+| disco_vinil | 79374 | 60810 | 76,6% | R$ 42,00 | 22,9% |
+| prata_metal | 76155 | 53000 | 69,6% | R$ 120,00 | 28,7% |
+| conjunto_de_cadeiras | 2382 | 1598 | 67,1% | R$ 2.100,00 | 26,1% |
+| carrinho_de_cha | 486 | 326 | 67,1% | R$ 1.000,00 | 25,1% |
+| selo_filatelia | 36022 | 24011 | 66,7% | R$ 15,00 | 32,8% |
+| sofa | 3176 | 2014 | 63,4% | R$ 2.600,00 | 28,0% |
+| brinquedo | 135756 | 85776 | 63,2% | R$ 60,00 | 35,6% |
+| par_de_poltronas | 3370 | 2126 | 63,1% | R$ 3.600,00 | 28,9% |
+| mesa_lateral | 2866 | 1768 | 61,7% | R$ 460,00 | 31,5% |
+| mesa_de_centro | 3269 | 1929 | 59,0% | R$ 1.100,00 | 34,8% |
+| poltrona | 5811 | 3404 | 58,6% | R$ 2.100,00 | 33,6% |
+| cama | 1427 | 832 | 58,3% | R$ 400,00 | 37,6% |
 
 ## 3. Top categorias por ticket (martelo mediano)
 
 | item_type | martelo mediano | sell-through | ofertados |
 |---|---|---|---|
-| par_de_poltronas | R$ 3.600,00 | 63,1% | 3360 |
-| sofa | R$ 2.600,00 | 63,3% | 3162 |
-| conjunto_de_cadeiras | R$ 2.100,00 | 67,0% | 2371 |
-| poltrona | R$ 2.100,00 | 58,5% | 5780 |
-| mesa_de_jantar | R$ 1.900,00 | 55,6% | 1924 |
+| par_de_poltronas | R$ 3.600,00 | 63,1% | 3370 |
+| sofa | R$ 2.600,00 | 63,4% | 3176 |
+| conjunto_de_cadeiras | R$ 2.100,00 | 67,1% | 2382 |
+| poltrona | R$ 2.100,00 | 58,6% | 5811 |
+| mesa_de_jantar | R$ 1.900,00 | 55,6% | 1932 |
 | escrivaninha | R$ 1.400,00 | 55,1% | 1054 |
-| aparador | R$ 1.100,00 | 54,3% | 2858 |
-| mesa_de_centro | R$ 1.100,00 | 59,0% | 3262 |
-| carrinho_de_cha | R$ 1.000,00 | 67,2% | 485 |
-| comoda | R$ 850,00 | 55,1% | 1152 |
-| par_de_cadeiras | R$ 800,00 | 51,8% | 1811 |
-| estante | R$ 650,00 | 55,4% | 2679 |
+| aparador | R$ 1.100,00 | 54,3% | 2868 |
+| mesa_de_centro | R$ 1.100,00 | 59,0% | 3269 |
+| carrinho_de_cha | R$ 1.000,00 | 67,1% | 486 |
+| comoda | R$ 850,00 | 55,2% | 1154 |
+| par_de_cadeiras | R$ 800,00 | 51,9% | 1818 |
+| estante | R$ 650,00 | 55,5% | 2693 |
 
 ## 4. Categorias de baixa complexidade logística (foco operação solo)
 
 | item_type | sell-through | martelo mediano | ofertados |
 |---|---|---|---|
-| prata_metal | 69,6% | R$ 120,00 | 75962 |
-| mesa_lateral | 61,8% | R$ 460,00 | 2855 |
-| mesa_de_centro | 59,0% | R$ 1.100,00 | 3262 |
-| poltrona | 58,5% | R$ 2.100,00 | 5780 |
-| espelho | 56,6% | R$ 350,00 | 4434 |
-| cadeira | 55,3% | R$ 550,00 | 5923 |
-| par_de_cadeiras | 51,8% | R$ 800,00 | 1811 |
-| porcelana_ceramica | 51,1% | R$ 72,00 | 52320 |
-| luminaria_lustre | 50,5% | R$ 200,00 | 14150 |
-| objeto_decorativo | 47,9% | R$ 120,00 | 4747 |
-| cristal_vidro | 41,0% | R$ 85,00 | 46806 |
-| escultura | 33,7% | R$ 170,00 | 45292 |
+| prata_metal | 69,6% | R$ 120,00 | 76155 |
+| mesa_lateral | 61,7% | R$ 460,00 | 2866 |
+| mesa_de_centro | 59,0% | R$ 1.100,00 | 3269 |
+| poltrona | 58,6% | R$ 2.100,00 | 5811 |
+| espelho | 56,7% | R$ 350,00 | 4445 |
+| cadeira | 55,4% | R$ 550,00 | 5946 |
+| par_de_cadeiras | 51,9% | R$ 800,00 | 1818 |
+| porcelana_ceramica | 51,1% | R$ 72,00 | 52532 |
+| luminaria_lustre | 50,5% | R$ 200,00 | 14195 |
+| objeto_decorativo | 47,9% | R$ 120,00 | 4766 |
+| cristal_vidro | 41,0% | R$ 88,00 | 47051 |
+| escultura | 33,8% | R$ 170,00 | 45444 |
 
 ## 5. Casas para sourcing (maior zero-bid + volume ≥50)
 
 | casa | uf | finalizados | zero-bid | sell-through | martelo médio |
 |---|---|---|---|---|---|
-| Sol Mar e Lua Leilões | SP | 233 | 100,0% | 0,0% | — |
 | Leilões Bruno Francesco | RJ | 270 | 100,0% | 0,0% | — |
 | CH Collection - Numismática, Joias e Colecionáveis | PR | 386 | 100,0% | 0,0% | — |
+| Sol Mar e Lua Leilões | SP | 233 | 100,0% | 0,0% | — |
 | Casa de Leilões Guedes e Guedes | nan | 651 | 99,1% | 0,9% | R$ 157,50 |
 | Coleções e Afins | MG | 600 | 98,7% | 1,3% | R$ 24,25 |
 | 24K Joias Leilões | nan | 801 | 97,6% | 2,4% | R$ 1.625,79 |
@@ -93,13 +93,13 @@ _Zero-bid alto = mais chance de arrematar barato / pós-pregão._
 | Nossa Coleção | SP | 451 | 99,6% | R$ 107,07 |
 | Vitrine das Antiguidades | SP | 258 | 99,2% | R$ 52,80 |
 | Saturno Leilões | nan | 28500 | 99,1% | R$ 8,57 |
-| Velho Armazém Leilões | nan | 110 | 99,1% | R$ 77,16 |
+| Velho Armazém Leilões | nan | 220 | 99,1% | R$ 77,16 |
 | Acervo Cult - Colecionismo Para Todos | nan | 5019 | 97,8% | R$ 100,31 |
-| Filatélica MG Leilões | nan | 16676 | 97,7% | R$ 24,36 |
+| Filatélica MG Leilões | nan | 18052 | 97,7% | R$ 23,96 |
 | Galeria República da Arte | PR | 200 | 97,5% | R$ 123,64 |
 | Pariz Moedas | PR | 290 | 95,5% | R$ 89,35 |
 | PRH Leilões | RS | 570 | 95,4% | R$ 47,49 |
-| RH Leilões | nan | 300 | 95,3% | R$ 25,13 |
+| RH Leilões | nan | 600 | 95,3% | R$ 25,13 |
 | Acervo do Garimpeiro | SP | 2856 | 95,1% | R$ 76,66 |
 | Escafandro Discos - Antiguidades e Colecionáveis | nan | 12762 | 94,9% | R$ 120,25 |
 | Colecionários | nan | 870 | 94,5% | R$ 54,88 |
@@ -109,156 +109,111 @@ _Zero-bid alto = mais chance de arrematar barato / pós-pregão._
 
 > **Como ler.** Estes são sinais de _triagem_, não lucros garantidos. A revenda é estimada pelo p25 (conservador) dos martelos de comparáveis × markup de varejo. O comp agrupa por (tipo, designer), então **não distingue o modelo/linha específico** (ex.: uma 'Poltrona Cimba' barata herda o comp de poltronas do mesmo designer). Trate margens altas em itens de lance muito baixo como candidatos a verificar peça a peça (use a coluna `lot_url` e a amostra de auditoria), não como certezas.
 
-Total de lotes BUY_NOW: **68**. Top 25 por lucro estimado (conservador):
+Total de lotes BUY_NOW: **20**. Top 25 por lucro estimado (conservador):
 
 | título | tipo | designer | lance atual | revenda est. | margem | lance máx 40% | uf |
 |---|---|---|---|---|---|---|---|
-| Abraham Palatnik - Mesa de centro com tampo e | mesa_de_centro | abraham_palatnik | R$ 1.100,00 | R$ 46.350,00 | 88,4% | R$ 12.709,16 | SP |
-| RR Antiguidades Antigo quadro representando c | cristal_vidro | moveis_cimo | R$ 400,00 | R$ 12.060,00 | 92,6% | R$ 4.077,14 | RJ |
-| Mesa lateral, confeccionada em madeira nobre, | mesa_lateral | branco_e_preto | R$ 160,00 | R$ 7.560,00 | 93,5% | R$ 3.600,00 | RJ |
-| Mesa lateral, confeccionada em madeira nobre, | mesa_lateral | branco_e_preto | R$ 180,00 | R$ 7.560,00 | 93,2% | R$ 3.600,00 | RJ |
-| SERGIO RODRIGUES- CIMBA poltrona anos 80 do p | poltrona | sergio_rodrigues | R$ 260,00 | R$ 14.819,40 | 84,3% | R$ 3.279,05 | RJ |
-| SERGIO RODRIGUES - poltronas IAB em madeira e | poltrona | sergio_rodrigues | R$ 570,00 | R$ 14.819,40 | 67,2% | R$ 2.421,90 | nan |
-| Par de Poltronas, Anos 70 - Produzidas em esp | par_de_poltronas | percival_lafer | R$ 4.000,00 | R$ 18.900,00 | 49,2% | R$ 4.824,76 | SP |
-| SÉRGIO RODRIGUES - Banco Mocho. Esculpido em  | banco | sergio_rodrigues | R$ 700,00 | R$ 9.720,00 | 78,9% | R$ 2.468,57 | RJ |
-| SÉRGIO RODRIGUES - Banco Mocho. Esculpido em  | banco | sergio_rodrigues | R$ 750,00 | R$ 9.720,00 | 77,8% | R$ 2.468,57 | RJ |
-| Rara Poltrona, Sergio Rodrigues - Produzida e | poltrona | sergio_rodrigues | R$ 2.800,00 | R$ 14.819,40 | 51,2% | R$ 3.564,76 | SP |
-| PERCIVAL LAFER - Poltrona  do design brasilei | poltrona | percival_lafer | R$ 1.200,00 | R$ 9.720,00 | 66,5% | R$ 2.561,90 | RJ |
-| PERCIVAL LAFER - Poltrona  do design brasilei | poltrona | percival_lafer | R$ 1.200,00 | R$ 9.720,00 | 66,5% | R$ 2.561,90 | RJ |
-| PERCIVAL LAFER - Poltrona  do design brasilei | poltrona | percival_lafer | R$ 1.200,00 | R$ 9.720,00 | 66,5% | R$ 2.561,90 | RJ |
-| EUGENIO PROENÇA SIGAUD (1899-1979) - " Nature | quadro_pintura | joaquim_tenreiro | R$ 220,00 | R$ 12.780,00 | 86,8% | R$ 1.902,86 | RJ |
-| SERGIO RODRIGUES - MARCOS banqueta anos 60 em | banco | sergio_rodrigues | R$ 240,00 | R$ 9.720,00 | 63,9% | R$ 1.325,71 | RJ |
-| SÉRGIO RODRIGUES - Banco de Bar - "Nine". Est | banco | sergio_rodrigues | R$ 1.400,00 | R$ 9.720,00 | 63,5% | R$ 2.468,57 | RJ |
-| SÉRGIO RODRIGUES - Banco de Bar - "Nine". Est | banco | sergio_rodrigues | R$ 1.400,00 | R$ 9.720,00 | 63,5% | R$ 2.468,57 | RJ |
-| ROBIN DAY - par de cadeiras anos 70 de plásti | par_de_cadeiras | jorge_zalszupin | R$ 500,00 | R$ 5.760,00 | 79,0% | R$ 1.902,86 | RJ |
-| Percival Lafer (São Paulo, SP, 12 de abril de | poltrona | percival_lafer | R$ 1.800,00 | R$ 9.720,00 | 54,8% | R$ 2.561,90 | nan |
-| Joaquim Tenreiro:  Par de poltronas,  design  | par_de_poltronas | joaquim_tenreiro | R$ 0,00 | R$ 31.950,00 | 83,5% | R$ 1.379,05 | RJ |
-| JOSEPH SCAPINELLI- Par de cadeira anos 60 | cadeira | giuseppe_scapinelli | R$ 150,00 | R$ 7.200,00 | 86,4% | R$ 1.542,86 | nan |
-| JOSEPH SCAPINELLI- Par de cadeira anos 60 | cadeira | giuseppe_scapinelli | R$ 150,00 | R$ 7.200,00 | 86,4% | R$ 1.542,86 | nan |
-| CELINA DECORAÇÕES-BELO PAR DE MESAS LATERAIS  | outro | celina | R$ 850,00 | R$ 6.030,00 | 69,2% | R$ 1.902,86 | nan |
-| Sergio Rodrigues - Mesa de centro de dois and | mesa_de_centro | sergio_rodrigues | R$ 1.200,00 | R$ 7.740,00 | 44,9% | R$ 1.452,99 | SP |
-| GIUSEPE SCAPINELLI- MARACANÃ  singular mesa l | mesa_lateral | giuseppe_scapinelli | R$ 600,00 | R$ 5.220,00 | 70,9% | R$ 1.509,43 | RJ |
+| Mesa estilo GIUSEPPE SCAPINELLI: Antiga base  | mesa_de_centro | giuseppe_scapinelli | R$ 100,00 | R$ 7.020,00 | 52,1% | R$ 544,76 | RJ |
+| Mesa Auxiliar, Giuseppe Scapinelli - Produzid | mesa_lateral | giuseppe_scapinelli | R$ 900,00 | R$ 5.220,00 | 60,7% | R$ 1.509,43 | SP |
+| Celina Zilberberg - Celina Decorações - Brasi | outro | celina | R$ 1.600,00 | R$ 6.030,00 | 48,4% | R$ 1.902,86 | RJ |
+| Mesa Auxiliar, Giuseppe Scapinelli - Produzid | mesa_lateral | giuseppe_scapinelli | R$ 950,00 | R$ 5.220,00 | 59,0% | R$ 1.509,43 | SP |
+| Par de poltronas em ferro tubular anos 60 ,na | par_de_poltronas | nan | R$ 390,00 | R$ 6.480,00 | 62,3% | R$ 929,05 | SP |
+| Par de poltronas em ferro tubular anos 60 ,na | par_de_poltronas | nan | R$ 390,00 | R$ 6.480,00 | 62,3% | R$ 929,05 | SP |
+| ATHOS BULCÃO  -  Gravura:  Aeroporto Internac | gravura | athos_bulcao | R$ 1.200,00 | R$ 4.383,00 | 52,9% | R$ 1.559,71 | nan |
+| ATHOS BULCÃO  -  Gravura:  Aeroporto Internac | gravura | athos_bulcao | R$ 1.300,00 | R$ 4.383,00 | 49,3% | R$ 1.559,71 | nan |
+| Espelho redondo de parede em madeira de jacar | espelho | sergio_rodrigues | R$ 1.500,00 | R$ 7.020,00 | 40,2% | R$ 1.507,88 | nan |
+| Roberto Burle Marx - Serigrafia - Abstratos ( | gravura | burle_marx | R$ 675,00 | R$ 2.700,00 | 61,6% | R$ 1.120,00 | nan |
+| Roberto Burle Marx - Serigrafia - Abstrato.   | gravura | burle_marx | R$ 675,00 | R$ 2.700,00 | 61,6% | R$ 1.120,00 | nan |
+| Conjunto de sofá de três lugares e 2 poltrona | par_de_poltronas | nan | R$ 499,00 | R$ 6.480,00 | 46,0% | R$ 643,33 | RJ |
+| Par de poltronas no formato Gondole no estilo | par_de_poltronas | nan | R$ 580,00 | R$ 6.480,00 | 42,6% | R$ 643,33 | RJ |
+| Percival Lafer mesa de centro em madeira com  | mesa_de_centro | percival_lafer | R$ 350,00 | R$ 2.839,50 | 42,0% | R$ 443,05 | SP |
+| Percival Lafer mesa de centro em madeira com  | mesa_de_centro | percival_lafer | R$ 410,00 | R$ 2.839,50 | 42,0% | R$ 443,05 | SP |
+| cadeira design - poltrona antiga em acrilico, | poltrona | nan | R$ 190,00 | R$ 3.780,00 | 47,9% | R$ 299,05 | RJ |
+| Par de cadeiras em plástico.  Altura: 0. 80 m | par_de_cadeiras | nan | R$ 10,00 | R$ 1.440,00 | 56,7% | R$ 113,14 | nan |
+| Par de cadeiras medalhão, pés torneados e fri | par_de_cadeiras | nan | R$ 50,00 | R$ 1.440,00 | 50,2% | R$ 113,14 | RJ |
+| Par de cadeiras com estofado bege em tecido a | par_de_cadeiras | nan | R$ 100,00 | R$ 1.440,00 | 42,1% | R$ 113,14 | RJ |
+| Lote composto por cinco cadeiras avulsas de e | par_de_cadeiras | nan | R$ 100,00 | R$ 1.440,00 | 42,1% | R$ 113,14 | nan |
 
 ## 8. Carteira sugerida — estoque inicial
 
-### R$ 30.000 — 36 peças, capital alocado R$ 29.977,50
+### R$ 30.000 — 20 peças, capital alocado R$ 12.567,45
 
 | título | tipo | lance | lucro est. | margem | uf |
 |---|---|---|---|---|---|
-| Abraham Palatnik - Mesa de centro com tamp | mesa_de_centro | R$ 1.100,00 | R$ 22.252,70 | 88,4% | SP |
-| RR Antiguidades Antigo quadro representand | cristal_vidro | R$ 400,00 | R$ 6.795,00 | 92,6% | RJ |
-| Mesa lateral, confeccionada em madeira nob | mesa_lateral | R$ 160,00 | R$ 6.312,00 | 93,5% | RJ |
-| Mesa lateral, confeccionada em madeira nob | mesa_lateral | R$ 180,00 | R$ 6.291,00 | 93,2% | RJ |
-| SERGIO RODRIGUES- CIMBA poltrona anos 80 d | poltrona | R$ 260,00 | R$ 6.032,00 | 84,3% | RJ |
-| SERGIO RODRIGUES - poltronas IAB em madeir | poltrona | R$ 570,00 | R$ 4.806,50 | 67,2% | nan |
-| Par de Poltronas, Anos 70 - Produzidas em  | par_de_poltronas | R$ 4.000,00 | R$ 4.610,00 | 49,2% | SP |
-| SÉRGIO RODRIGUES - Banco Mocho. Esculpido  | banco | R$ 700,00 | R$ 3.765,00 | 78,9% | RJ |
-| SÉRGIO RODRIGUES - Banco Mocho. Esculpido  | banco | R$ 750,00 | R$ 3.712,50 | 77,8% | RJ |
-| Rara Poltrona, Sergio Rodrigues - Produzid | poltrona | R$ 2.800,00 | R$ 3.665,00 | 51,2% | SP |
-| PERCIVAL LAFER - Poltrona  do design brasi | poltrona | R$ 1.200,00 | R$ 3.590,00 | 66,5% | RJ |
-| PERCIVAL LAFER - Poltrona  do design brasi | poltrona | R$ 1.200,00 | R$ 3.590,00 | 66,5% | RJ |
-| PERCIVAL LAFER - Poltrona  do design brasi | poltrona | R$ 1.200,00 | R$ 3.590,00 | 66,5% | RJ |
-| EUGENIO PROENÇA SIGAUD (1899-1979) - " Nat | quadro_pintura | R$ 220,00 | R$ 3.279,00 | 86,8% | RJ |
-| SERGIO RODRIGUES - MARCOS banqueta anos 60 | banco | R$ 240,00 | R$ 3.048,00 | 63,9% | RJ |
-| SÉRGIO RODRIGUES - Banco de Bar - "Nine".  | banco | R$ 1.400,00 | R$ 3.030,00 | 63,5% | RJ |
-| SÉRGIO RODRIGUES - Banco de Bar - "Nine".  | banco | R$ 1.400,00 | R$ 3.030,00 | 63,5% | RJ |
-| ROBIN DAY - par de cadeiras anos 70 de plá | par_de_cadeiras | R$ 500,00 | R$ 2.985,00 | 79,0% | RJ |
-| Percival Lafer (São Paulo, SP, 12 de abril | poltrona | R$ 1.800,00 | R$ 2.960,00 | 54,8% | nan |
-| JOSEPH SCAPINELLI- Par de cadeira anos 60 | cadeira | R$ 150,00 | R$ 2.722,50 | 86,4% | nan |
-| CELINA DECORAÇÕES-BELO PAR DE MESAS LATERA | outro | R$ 850,00 | R$ 2.617,50 | 69,2% | nan |
-| Sergio Rodrigues - Mesa de centro de dois  | mesa_de_centro | R$ 1.200,00 | R$ 2.449,40 | 44,9% | SP |
 | Mesa estilo GIUSEPPE SCAPINELLI: Antiga ba | mesa_de_centro | R$ 100,00 | R$ 2.015,00 | 52,1% | RJ |
 | Mesa Auxiliar, Giuseppe Scapinelli - Produ | mesa_lateral | R$ 900,00 | R$ 1.876,50 | 60,7% | SP |
-| Par de Poltronas, Estilo Luís XVI, em Made | par_de_poltronas | R$ 120,00 | R$ 1.871,00 | 73,5% | SP |
-| Par de poltronas estofadas com tecido list | par_de_poltronas | R$ 150,00 | R$ 1.839,50 | 72,2% | RS |
 | Celina Zilberberg - Celina Decorações - Br | outro | R$ 1.600,00 | R$ 1.830,00 | 48,4% | RJ |
 | Mesa Auxiliar, Giuseppe Scapinelli - Produ | mesa_lateral | R$ 950,00 | R$ 1.824,00 | 59,0% | SP |
-| Par de poltronas de diretor em metal com a | par_de_poltronas | R$ 290,00 | R$ 1.692,50 | 66,5% | RS |
-| Autor Desconhecido - Banco Ripado - O banc | banco | R$ 220,00 | R$ 1.629,00 | 48,9% | SP |
-| Par de poltronas em ferro tubular anos 60  | par_de_poltronas | R$ 390,00 | R$ 1.587,50 | 62,3% | SP |
-| Par de poltronas em ferro tubular anos 60  | par_de_poltronas | R$ 390,00 | R$ 1.587,50 | 62,3% | SP |
-| Par de poltronas estilo Wingback clássica  | par_de_poltronas | R$ 400,00 | R$ 1.577,00 | 61,9% | RS |
-| Par de poltronas rústicas em madeira -med. | par_de_poltronas | R$ 450,00 | R$ 1.524,50 | 59,9% | RS |
-| Par de poltronas contemporâneas estofadas  | par_de_poltronas | R$ 300,00 | R$ 1.382,00 | 54,3% | RS |
-| Par de cadeiras em plástico.  Altura: 0. 8 | par_de_cadeiras | R$ 10,00 | R$ 367,50 | 56,7% | nan |
-
-**Lucro bruto potencial da carteira (estimativa conservadora, a verificar peça a peça): R$ 127.736,60** (margem agregada 81,0%). Driver: peças de designer (Sergio Rodrigues, Burle Marx) com lance ainda baixo — confirme modelo/linha e autenticidade antes de arrematar.
-
-### R$ 50.000 — 40 peças, capital alocado R$ 34.534,50
-
-| título | tipo | lance | lucro est. | margem | uf |
-|---|---|---|---|---|---|
-| Abraham Palatnik - Mesa de centro com tamp | mesa_de_centro | R$ 1.100,00 | R$ 22.252,70 | 88,4% | SP |
-| RR Antiguidades Antigo quadro representand | cristal_vidro | R$ 400,00 | R$ 6.795,00 | 92,6% | RJ |
-| Mesa lateral, confeccionada em madeira nob | mesa_lateral | R$ 160,00 | R$ 6.312,00 | 93,5% | RJ |
-| Mesa lateral, confeccionada em madeira nob | mesa_lateral | R$ 180,00 | R$ 6.291,00 | 93,2% | RJ |
-| SERGIO RODRIGUES- CIMBA poltrona anos 80 d | poltrona | R$ 260,00 | R$ 6.032,00 | 84,3% | RJ |
-| SERGIO RODRIGUES - poltronas IAB em madeir | poltrona | R$ 570,00 | R$ 4.806,50 | 67,2% | nan |
-| Par de Poltronas, Anos 70 - Produzidas em  | par_de_poltronas | R$ 4.000,00 | R$ 4.610,00 | 49,2% | SP |
-| SÉRGIO RODRIGUES - Banco Mocho. Esculpido  | banco | R$ 700,00 | R$ 3.765,00 | 78,9% | RJ |
-| SÉRGIO RODRIGUES - Banco Mocho. Esculpido  | banco | R$ 750,00 | R$ 3.712,50 | 77,8% | RJ |
-| Rara Poltrona, Sergio Rodrigues - Produzid | poltrona | R$ 2.800,00 | R$ 3.665,00 | 51,2% | SP |
-| PERCIVAL LAFER - Poltrona  do design brasi | poltrona | R$ 1.200,00 | R$ 3.590,00 | 66,5% | RJ |
-| PERCIVAL LAFER - Poltrona  do design brasi | poltrona | R$ 1.200,00 | R$ 3.590,00 | 66,5% | RJ |
-| PERCIVAL LAFER - Poltrona  do design brasi | poltrona | R$ 1.200,00 | R$ 3.590,00 | 66,5% | RJ |
-| EUGENIO PROENÇA SIGAUD (1899-1979) - " Nat | quadro_pintura | R$ 220,00 | R$ 3.279,00 | 86,8% | RJ |
-| SERGIO RODRIGUES - MARCOS banqueta anos 60 | banco | R$ 240,00 | R$ 3.048,00 | 63,9% | RJ |
-| SÉRGIO RODRIGUES - Banco de Bar - "Nine".  | banco | R$ 1.400,00 | R$ 3.030,00 | 63,5% | RJ |
-| SÉRGIO RODRIGUES - Banco de Bar - "Nine".  | banco | R$ 1.400,00 | R$ 3.030,00 | 63,5% | RJ |
-| ROBIN DAY - par de cadeiras anos 70 de plá | par_de_cadeiras | R$ 500,00 | R$ 2.985,00 | 79,0% | RJ |
-| Percival Lafer (São Paulo, SP, 12 de abril | poltrona | R$ 1.800,00 | R$ 2.960,00 | 54,8% | nan |
-| JOSEPH SCAPINELLI- Par de cadeira anos 60 | cadeira | R$ 150,00 | R$ 2.722,50 | 86,4% | nan |
-| CELINA DECORAÇÕES-BELO PAR DE MESAS LATERA | outro | R$ 850,00 | R$ 2.617,50 | 69,2% | nan |
-| Sergio Rodrigues - Mesa de centro de dois  | mesa_de_centro | R$ 1.200,00 | R$ 2.449,40 | 44,9% | SP |
-| Mesa estilo GIUSEPPE SCAPINELLI: Antiga ba | mesa_de_centro | R$ 100,00 | R$ 2.015,00 | 52,1% | RJ |
-| Mesa Auxiliar, Giuseppe Scapinelli - Produ | mesa_lateral | R$ 900,00 | R$ 1.876,50 | 60,7% | SP |
-| Par de Poltronas, Estilo Luís XVI, em Made | par_de_poltronas | R$ 120,00 | R$ 1.871,00 | 73,5% | SP |
-| Par de poltronas estofadas com tecido list | par_de_poltronas | R$ 150,00 | R$ 1.839,50 | 72,2% | RS |
-| Celina Zilberberg - Celina Decorações - Br | outro | R$ 1.600,00 | R$ 1.830,00 | 48,4% | RJ |
-| Mesa Auxiliar, Giuseppe Scapinelli - Produ | mesa_lateral | R$ 950,00 | R$ 1.824,00 | 59,0% | SP |
-| Par de poltronas de diretor em metal com a | par_de_poltronas | R$ 290,00 | R$ 1.692,50 | 66,5% | RS |
-| Autor Desconhecido - Banco Ripado - O banc | banco | R$ 220,00 | R$ 1.629,00 | 48,9% | SP |
-| Par de poltronas em ferro tubular anos 60  | par_de_poltronas | R$ 390,00 | R$ 1.587,50 | 62,3% | SP |
-| Par de poltronas em ferro tubular anos 60  | par_de_poltronas | R$ 390,00 | R$ 1.587,50 | 62,3% | SP |
-| Par de poltronas estilo Wingback clássica  | par_de_poltronas | R$ 400,00 | R$ 1.577,00 | 61,9% | RS |
+| Par de poltronas em ferro tubular anos 60  | par_de_poltronas | R$ 390,00 | R$ 1.583,00 | 62,3% | SP |
+| Par de poltronas em ferro tubular anos 60  | par_de_poltronas | R$ 390,00 | R$ 1.583,00 | 62,3% | SP |
 | ATHOS BULCÃO  -  Gravura:  Aeroporto Inter | gravura | R$ 1.200,00 | R$ 1.549,50 | 52,9% | nan |
-| Par de poltronas rústicas em madeira -med. | par_de_poltronas | R$ 450,00 | R$ 1.524,50 | 59,9% | RS |
-| Par de poltronas estofadas. Altura do enco | par_de_poltronas | R$ 500,00 | R$ 1.472,00 | 57,8% | nan |
 | ATHOS BULCÃO  -  Gravura:  Aeroporto Inter | gravura | R$ 1.300,00 | R$ 1.444,50 | 49,3% | nan |
-| Par de poltronas contemporâneas estofadas  | par_de_poltronas | R$ 300,00 | R$ 1.382,00 | 54,3% | RS |
+| Espelho redondo de parede em madeira de ja | espelho | R$ 1.500,00 | R$ 1.430,45 | 40,2% | nan |
 | Roberto Burle Marx - Serigrafia - Abstrato | gravura | R$ 675,00 | R$ 1.331,25 | 61,6% | nan |
 | Roberto Burle Marx - Serigrafia - Abstrato | gravura | R$ 675,00 | R$ 1.331,25 | 61,6% | nan |
+| Conjunto de sofá de três lugares e 2 poltr | par_de_poltronas | R$ 499,00 | R$ 1.168,55 | 46,0% | RJ |
+| Par de poltronas no formato Gondole no est | par_de_poltronas | R$ 580,00 | R$ 1.083,50 | 42,6% | RJ |
+| Percival Lafer mesa de centro em madeira c | mesa_de_centro | R$ 350,00 | R$ 711,50 | 42,0% | SP |
+| Percival Lafer mesa de centro em madeira c | mesa_de_centro | R$ 410,00 | R$ 711,50 | 42,0% | SP |
+| cadeira design - poltrona antiga em acrili | poltrona | R$ 190,00 | R$ 690,50 | 47,9% | RJ |
+| Par de cadeiras em plástico.  Altura: 0. 8 | par_de_cadeiras | R$ 10,00 | R$ 367,50 | 56,7% | nan |
+| Par de cadeiras medalhão, pés torneados e  | par_de_cadeiras | R$ 50,00 | R$ 325,50 | 50,2% | RJ |
+| Par de cadeiras com estofado bege em tecid | par_de_cadeiras | R$ 100,00 | R$ 273,00 | 42,1% | RJ |
+| Lote composto por cinco cadeiras avulsas d | par_de_cadeiras | R$ 100,00 | R$ 273,00 | 42,1% | nan |
 
-**Lucro bruto potencial da carteira (estimativa conservadora, a verificar peça a peça): R$ 134.497,60** (margem agregada 79,6%). Driver: peças de designer (Sergio Rodrigues, Burle Marx) com lance ainda baixo — confirme modelo/linha e autenticidade antes de arrematar.
+**Lucro bruto potencial da carteira (estimativa conservadora, a verificar peça a peça): R$ 23.403,00** (margem agregada 65,1%). Driver: peças de designer (Sergio Rodrigues, Burle Marx) com lance ainda baixo — confirme modelo/linha e autenticidade antes de arrematar.
+
+### R$ 50.000 — 20 peças, capital alocado R$ 12.567,45
+
+| título | tipo | lance | lucro est. | margem | uf |
+|---|---|---|---|---|---|
+| Mesa estilo GIUSEPPE SCAPINELLI: Antiga ba | mesa_de_centro | R$ 100,00 | R$ 2.015,00 | 52,1% | RJ |
+| Mesa Auxiliar, Giuseppe Scapinelli - Produ | mesa_lateral | R$ 900,00 | R$ 1.876,50 | 60,7% | SP |
+| Celina Zilberberg - Celina Decorações - Br | outro | R$ 1.600,00 | R$ 1.830,00 | 48,4% | RJ |
+| Mesa Auxiliar, Giuseppe Scapinelli - Produ | mesa_lateral | R$ 950,00 | R$ 1.824,00 | 59,0% | SP |
+| Par de poltronas em ferro tubular anos 60  | par_de_poltronas | R$ 390,00 | R$ 1.583,00 | 62,3% | SP |
+| Par de poltronas em ferro tubular anos 60  | par_de_poltronas | R$ 390,00 | R$ 1.583,00 | 62,3% | SP |
+| ATHOS BULCÃO  -  Gravura:  Aeroporto Inter | gravura | R$ 1.200,00 | R$ 1.549,50 | 52,9% | nan |
+| ATHOS BULCÃO  -  Gravura:  Aeroporto Inter | gravura | R$ 1.300,00 | R$ 1.444,50 | 49,3% | nan |
+| Espelho redondo de parede em madeira de ja | espelho | R$ 1.500,00 | R$ 1.430,45 | 40,2% | nan |
+| Roberto Burle Marx - Serigrafia - Abstrato | gravura | R$ 675,00 | R$ 1.331,25 | 61,6% | nan |
+| Roberto Burle Marx - Serigrafia - Abstrato | gravura | R$ 675,00 | R$ 1.331,25 | 61,6% | nan |
+| Conjunto de sofá de três lugares e 2 poltr | par_de_poltronas | R$ 499,00 | R$ 1.168,55 | 46,0% | RJ |
+| Par de poltronas no formato Gondole no est | par_de_poltronas | R$ 580,00 | R$ 1.083,50 | 42,6% | RJ |
+| Percival Lafer mesa de centro em madeira c | mesa_de_centro | R$ 350,00 | R$ 711,50 | 42,0% | SP |
+| Percival Lafer mesa de centro em madeira c | mesa_de_centro | R$ 410,00 | R$ 711,50 | 42,0% | SP |
+| cadeira design - poltrona antiga em acrili | poltrona | R$ 190,00 | R$ 690,50 | 47,9% | RJ |
+| Par de cadeiras em plástico.  Altura: 0. 8 | par_de_cadeiras | R$ 10,00 | R$ 367,50 | 56,7% | nan |
+| Par de cadeiras medalhão, pés torneados e  | par_de_cadeiras | R$ 50,00 | R$ 325,50 | 50,2% | RJ |
+| Par de cadeiras com estofado bege em tecid | par_de_cadeiras | R$ 100,00 | R$ 273,00 | 42,1% | RJ |
+| Lote composto por cinco cadeiras avulsas d | par_de_cadeiras | R$ 100,00 | R$ 273,00 | 42,1% | nan |
+
+**Lucro bruto potencial da carteira (estimativa conservadora, a verificar peça a peça): R$ 23.403,00** (margem agregada 65,1%). Driver: peças de designer (Sergio Rodrigues, Burle Marx) com lance ainda baixo — confirme modelo/linha e autenticidade antes de arrematar.
 
 ## 9. Lances máximos por tipo de peça (para margem de 40%)
 
 | item_type | lance máx mediano (40% margem) |
 |---|---|
-| cristal_vidro | R$ 4.077,14 |
-| banco | R$ 2.468,57 |
-| quadro_pintura | R$ 1.902,86 |
 | outro | R$ 1.902,86 |
-| cadeira | R$ 1.542,86 |
 | mesa_lateral | R$ 1.509,43 |
-| poltrona | R$ 1.360,48 |
+| espelho | R$ 1.507,88 |
 | gravura | R$ 1.339,86 |
-| par_de_poltronas | R$ 931,62 |
-| mesa_de_centro | R$ 493,90 |
-| conjunto_de_cadeiras | R$ 350,48 |
+| par_de_poltronas | R$ 786,19 |
+| mesa_de_centro | R$ 443,05 |
+| poltrona | R$ 299,05 |
 | par_de_cadeiras | R$ 113,14 |
 
 ## 10. Modelo A (casa de leilão) vs Modelo B (garimpo + revenda)
 
-- **GMV observado** nas casas amostradas (martelo × vendidos): ~R$ 99.197.394,00 na janela de 14/01/2015 a 10/06/2026 (4166 dias) — denso e pulverizado entre muitas casas.
+- **GMV observado** nas casas amostradas (martelo × vendidos): ~R$ 99.726.978,00 na janela de 14/01/2015 a 02/07/2026 (4188 dias) — denso e pulverizado entre muitas casas.
 - **Modelo A** com take de 15,0%: para cobrir OPEX de R$ 10.000 / 15.000 / 25.000 ao mês, a casa precisaria de GMV mensal de ~R$ 66.666,67 / R$ 100.000,00 / R$ 166.666,67 respectivamente. Exige curadoria, captação de consignação e base de compradores — difícil para operação solo no início.
-- **Modelo B** já é acionável hoje: 68 lotes BUY_NOW com margem ≥ 40,0%, capital inicial de R$ 30k aloca 36 peças. Giro depende de logística — por isso o foco em peças small/medium/large.
+- **Modelo B** já é acionável hoje: 20 lotes BUY_NOW com margem ≥ 40,0%, capital inicial de R$ 30k aloca 20 peças. Giro depende de logística — por isso o foco em peças small/medium/large.
 
 **Recomendação:** começar pelo **Modelo B** (menor capital travado, risco operacional menor, lucro por peça verificável com os dados). Migrar para **Modelo A** quando o GMV mensal de revenda ultrapassar consistentemente ~R$ 100.000,00 e houver fluxo de consignação — aí o take fixo da casa passa a compensar o OPEX.
 
 ## 11. Limitações e vieses
 
-- Janela de finalizados observada: 14/01/2015 a 10/06/2026 (4166 dias); sazonalidade anual não capturada.
+- Janela de finalizados observada: 14/01/2015 a 02/07/2026 (4188 dias); sazonalidade anual não capturada.
 - Algumas casas usam plataforma distinta (≈10% de falhas 404/JSON) e ficam fora da amostra.
 - Lotes ao vivo têm só título (descrição completa não disponível sem por-leilão); atribuição de designer pode ter falso-negativo quando o nome só aparece na descrição.
 - Valor de revenda assume preço de mercado = mediana de martelo de comparáveis; é conservador para venda de varejo no Instagram e tem baixa confiança onde há poucos comps.

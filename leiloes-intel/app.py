@@ -6,6 +6,7 @@ data/exports/ — não exige SQLite nem re-scrape.
 
 Rodar:  streamlit run app.py
 """
+import json
 from pathlib import Path
 
 import pandas as pd
@@ -47,6 +48,11 @@ def load_lots() -> pd.DataFrame:
         df["macro_category"] = "Outro"
     df["macro_category"] = df["macro_category"].fillna("Outro")
     df["uf"] = df["uf"].fillna("?")
+    # "ao vivo agora" = leilão atualmente em aberto (a pipeline só calcula sinal
+    # para esses). Fallback p/ parquet antigo sem a coluna: deriva do sinal.
+    if "is_live_now" not in df.columns:
+        df["is_live_now"] = df["signal"].notna() & (df["status"] == "andamento")
+    df["is_live_now"] = df["is_live_now"].fillna(False).astype(bool)
     df["signal"] = df["signal"].fillna("—")
     dt = pd.to_datetime(df["auction_datetime"], format="%d/%m/%Y", errors="coerce")
     dt_iso = pd.to_datetime(df["auction_datetime"], errors="coerce", format="ISO8601")
@@ -67,6 +73,18 @@ def load_lots() -> pd.DataFrame:
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], downcast="integer")
     return df
+
+
+@st.cache_data(show_spinner=False)
+def load_run_meta() -> dict:
+    """Metadados da última atualização (escritos por refresh.py/report.py)."""
+    p = EXPORTS / "run_meta.json"
+    if p.exists():
+        try:
+            return json.loads(p.read_text(encoding="utf-8"))
+        except (ValueError, OSError):
+            return {}
+    return {}
 
 
 def brl(v) -> str:
@@ -114,6 +132,33 @@ def with_lot_url(d: pd.DataFrame) -> pd.DataFrame:
 st.title("🔨 LeilõesBR — Inteligência de Mercado")
 st.caption("Preço de martelo **real**, liquidez e oportunidades de arte, antiguidades e "
            "mobiliário modernista. Dados de páginas públicas, coletados com rate limit.")
+
+# --- carimbo da última atualização (run_meta.json escrito pela pipeline) ---
+_meta = load_run_meta()
+if _meta:
+    def _fmt_dt(s):
+        try:
+            return pd.to_datetime(s).strftime("%d/%m/%Y %H:%M")
+        except (ValueError, TypeError):
+            return "—"
+    _sig = _meta.get("signals", {})
+    mc = st.columns(5)
+    mc[0].metric("Última atualização", _fmt_dt(_meta.get("last_run") or _meta.get("generated_at")))
+    mc[1].metric("Lotes no banco", intbr(_meta.get("lots_total", 0)))
+    mc[2].metric("Ao vivo agora", intbr(_meta.get("live_now", 0)),
+                 help="Leilões atualmente em aberto (não inclui pregões já encerrados). "
+                      "Os sinais BUY_NOW/WATCH/AVOID cobrem apenas estes.")
+    mc[3].metric("BUY_NOW", intbr(_sig.get("BUY_NOW", 0)))
+    mc[4].metric("Comps de martelo", intbr(_meta.get("sold_comps", 0)))
+    _mode = _meta.get("mode")
+    _cut = _meta.get("finalizados_cutoff_days")
+    _det = []
+    if _meta.get("last_finalizado_scrape"):
+        _det.append(f"finalizados até {_fmt_dt(_meta['last_finalizado_scrape'])}")
+    if _mode:
+        _det.append(f"modo: {_mode}" + (f" (cutoff {_cut}d)" if _cut else ""))
+    if _det:
+        st.caption("🗓️ " + " · ".join(_det) + " — gerado por `refresh.py`.")
 
 # ----------------------------------------------------------------------------
 # Filtros globais
@@ -208,7 +253,7 @@ sb.caption("Dica: combine filtros (ex.: tipo = Poltrona + período = Últimos 6 
 
 fin = f[f["status"] == "finalizado"]
 soldf = fin[fin["sold"] == 1]
-live = f[f["status"] == "andamento"]
+live = f[f["is_live_now"]]  # só leilões atualmente em aberto (exclui 'andamento' já encerrado)
 
 # ----------------------------------------------------------------------------
 # KPIs
@@ -467,7 +512,7 @@ with tabs[7]:
     st.subheader("Lotes abertos com sinal de compra")
     sig = st.radio("Sinal", ["BUY_NOW", "WATCH", "AVOID"], horizontal=True,
                    captions=["comprar", "observar", "evitar"])
-    o = f[(f["status"] == "andamento") & (f["signal"] == sig)].sort_values(
+    o = f[f["is_live_now"] & (f["signal"] == sig)].sort_values(
         "est_gross_margin_pct", ascending=False)
     st.markdown(f"**{len(o)} lotes** com sinal `{sig}` no recorte.")
     if not o.empty:

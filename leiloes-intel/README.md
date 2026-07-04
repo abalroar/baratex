@@ -24,6 +24,30 @@ python run_all.py                 # pipeline completo
 python run_all.py --skip-scrape   # só re-processa dados já coletados
 ```
 
+### Atualização incremental automática (o jeito recomendado)
+`refresh.py` faz tudo derivando os inputs do estado da rodada anterior — não é
+preciso lembrar datas nem flags. Ele lê `data/exports/run_meta.json` (a "memória"
+da pipeline), calcula sozinho o **cutoff dos finalizados** (só leilões posteriores
+à última atualização), coleta listagens ao vivo + finalizados incrementais das
+800+ casas, reprocessa e regenera `lots.parquet` + `run_meta.json`.
+```bash
+python refresh.py                 # incremental automático (uso normal / cron)
+python refresh.py --full-history  # varre TODO o histórico (primeira vez / rebuild)
+python refresh.py --skip-listings # só finalizados + reprocess
+python refresh.py --no-finalizados# só listagens ao vivo + reprocess
+```
+`run_meta.json` guarda data da última atualização, cutoff usado, contagens
+(lotes, ao vivo agora, finalizados), distribuição de sinais e tempo por etapa —
+e o dashboard mostra esse carimbo no topo. Como o SQLite de ~920MB não vai para
+o git, o `refresh.py` deve rodar onde o banco persiste (este ambiente / seu Mac);
+depois basta commitar `data/exports/` para o Streamlit Cloud redeployar.
+
+**"Ao vivo agora" ≠ "andamento":** os sinais BUY_NOW/WATCH/AVOID cobrem só os
+leilões **atualmente em aberto** (último snapshot do lote = andamento *e* visto na
+coleta mais recente). Lotes de rodadas antigas cujo pregão já passou não entram
+nos sinais, mesmo que ainda não tenham sido recapturados como finalizados. A
+coluna `is_live_now` no parquet marca esse conjunto.
+
 ## Dashboard (deep dive)
 ```bash
 streamlit run app.py

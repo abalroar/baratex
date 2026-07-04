@@ -62,8 +62,28 @@ def build_comps(conn):
     return comps_designer, comps_type
 
 
+def latest_listing_scrape(conn) -> str | None:
+    """Timestamp da coleta de listagens ao vivo mais recente (fonte de 'agora')."""
+    row = conn.execute(
+        "SELECT MAX(scraped_at) m FROM lot_snapshots WHERE status='andamento'").fetchone()
+    return row["m"] if row and row["m"] else None
+
+
 def latest_live_lots(conn):
-    """Lotes em andamento com o snapshot mais recente (lance atual / nº lances)."""
+    """Lotes AO VIVO AGORA — só os casos atuais de leilão. Duas condições:
+
+    1. O snapshot MAIS RECENTE do lote (de QUALQUER status) é 'andamento'. Assim,
+       se o leilão já encerrou e virou 'finalizado', o lote sai da lista — mesmo
+       que ainda exista um snapshot 'andamento' antigo.
+    2. Esse snapshot foi capturado na coleta de listagens mais recente (mesmo dia).
+       Descarta lotes de rodadas antigas que sumiram da vitrine sem terem sido
+       recapturados como finalizados (leilão encerrado, sem histórico coletado).
+
+    Sem isso, sinais BUY_NOW/WATCH herdariam lotes de semanas atrás cujo pregão
+    já passou. Ver correção: só os leilões atuais entram nos sinais.
+    """
+    latest = latest_listing_scrape(conn)
+    live_since = (latest or "0000")[:10]  # dia da última coleta de listagens
     return conn.execute(
         """SELECT s.house_domain, s.lot_id, s.current_bid_brl AS bid, s.bid_count AS bids,
                   e.item_type_normalized AS it, e.size_class AS size, e.designer AS d,
@@ -73,9 +93,10 @@ def latest_live_lots(conn):
            JOIN lot_enrichment e ON e.house_domain=s.house_domain AND e.lot_id=s.lot_id
            JOIN lots l ON l.house_domain=s.house_domain AND l.lot_id=s.lot_id
            WHERE s.status='andamento' AND l.excluded_sensitive=0
+             AND s.scraped_at >= ?
              AND s.scraped_at=(SELECT MAX(s2.scraped_at) FROM lot_snapshots s2
-                               WHERE s2.house_domain=s.house_domain AND s2.lot_id=s.lot_id
-                                 AND s2.status='andamento')""").fetchall()
+                               WHERE s2.house_domain=s.house_domain
+                                 AND s2.lot_id=s.lot_id)""", (live_since,)).fetchall()
 
 
 def estimate_resale(lot, comps_designer, comps_type, A):
